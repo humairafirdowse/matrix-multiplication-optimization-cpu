@@ -1,7 +1,7 @@
 #!/bin/bash
 #Generate data.txt
 #May need to set execute permission: "chmod +x genDATA.sh"
-matrix_sizes=(32 64 128 255 256) #510 511 512 513 768 769 1023 1024 1025 1033 2047 2048 2049)
+matrix_sizes=(32 64 128 255 256 510 511 512 513 768 769 1023 1024 1025 1033 2047 2048 2049)
 
 
 > data.txt
@@ -12,7 +12,7 @@ do
 	SUM=0
 	for i in {1..20}
 	do
-		OUTPUT=$(./benchmark-blislab -n $size -g)
+		OUTPUT=$(./benchmark-naive -n $size -g)
 		GFLOPS=$(echo $OUTPUT | awk '{print $2}')
 		SUM=$(awk '{print $1+$2}' <<<"${SUM} ${GFLOPS}")
 	done

@@ -13,7 +13,7 @@
 #									#
 #########################################################################
 
-STDCPP          = --std=c11
+STDCPP          = --std=c++11
 STDC            = --std=c11
 
 C++ 		= g++ $(STDCPP)
@@ -23,9 +23,10 @@ CC 		= gcc $(STDC)
 
 # include openblas library
 LIB_BLAS =  -lopenblas
-INCLUDES += -I/usr/include/openblas
+#INCLUDES += -I/usr/include/openblas 
+INCLUDES += -I/usr/include/x86_64-linux-gnu
 # and ARM Performance Libarary
-ARMPL = -L/opt/arm/armpl_22.0.2_gcc-11.2/lib -larmpl
+#ARMPL = -L/opt/arm/armpl_22.0.2_gcc-11.2/lib -larmpl
 
 LDLIBS += $(LIB_BLAS) $(ARMPL)
 
@@ -52,15 +53,30 @@ C++FLAGS        += $(INCLUDES) $(ARCH_FLAGS) $(WARNINGS) $(OPTIMIZATION) \
 CFLAGS		+= $(INCLUDES) $(ARCH_FLAGS) $(WARNINGS) $(OPTIMIZATION) \
                   $(XTRAFLAGS) $(DEBUG) $(REPORT)
 
-LDLIBS		+= -lm -pthread
+#LDLIBS		+= -lm -pthread
 
 
 ## Original Make file
 
 CFLAGS += "-g"
 CFLAGS += "-DOPENBLAS_SINGLETHREAD"
-CFLAGS += -march=armv8.4-a+sve
-CFLAGS += -msve-vector-bits=256
+#CFLAGS += -march=armv8.4-a+sve
+#CFLAGS += -msve-vector-bits=256
+
+ARCH := $(shell uname -m)
+
+ifeq ($(ARCH), aarch64)
+    ARMPL = -L/opt/arm/armpl_22.0.2_gcc-11.2/lib -larmpl
+    CFLAGS += -march=armv8.4-a+sve
+    CFLAGS += -msve-vector-bits=256
+else
+    # For x86, we skip ARMPL and use native architecture optimizations
+    ARMPL =  # No ARM library for x86
+    CFLAGS += -march=native
+endif
+
+LDLIBS += $(LIB_BLAS) $(ARMPL)
+LDLIBS		+= -lm -pthread
 
 # If you want to change your optimization settings, do it here.
 ifeq ($(debug), 1)
