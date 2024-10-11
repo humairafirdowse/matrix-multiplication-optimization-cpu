@@ -16,7 +16,7 @@ If you worked alone leave column B blank
 A: Humaira Firdowse Mohammed
 
  
-B: Shiva Surya Seelam
+B: Shiva Surya Seelam (Initial Git Setup Check)
 
  
  
