@@ -44,7 +44,7 @@
  * */
 
 #include "bl_dgemm.h"
-
+#include "stdlib.h"
 /*
  *
  *
@@ -74,7 +74,7 @@ double *bl_malloc_aligned(
  *
  *
  */
-void bl_dgemm_printmatrix(
+void bl_printmatrix(
         double *A,
         int    lda,
         int    m,
@@ -82,9 +82,9 @@ void bl_dgemm_printmatrix(
         )
 {
     int    i, j;
-    for ( i = 0; i < m; i ++ ) {
-        for ( j = 0; j < n; j ++ ) {
-            printf("%lf\t", A[j * lda + i]);
+    for ( i = 0; i < n; i ++ ) {
+        for ( j = 0; j < m; j ++ ) {
+            printf("%lf\t", A[j + i*lda]);
         }
         printf("\n");
     }
