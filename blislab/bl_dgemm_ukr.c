@@ -29,7 +29,7 @@ void bl_dgemm_ukr( int    k,
 	      // starter code
 	      // cse260 - you can modify the leading indice to DGEMM_NR and DGEMM_MR as appropriate
 	      //
-	      c( i, j, ldc ) += a( l, i, m) * b( l, j, n );  //A is in column major order and B is in row major ordering  
+	      c( i, j, ldc ) += a( i, l, ldc) * b( l, j, ldc );   
             }
         }
     }
