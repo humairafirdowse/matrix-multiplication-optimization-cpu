@@ -88,25 +88,26 @@ void bl_dgemm_ukr( int    k,
         aval = *(A + kk*m+15);
         ax =svdup_f64(aval);
         c15x =svmla_f64_m(npred, c15x, bx, ax);
-        svst1_f64(npred, C, c0x);
-        if (m > 1) svst1_f64(npred, C+ldc, c1x);
-        if (m > 2) svst1_f64(npred, C+2*ldc, c2x);
-        if (m > 3) svst1_f64(npred, C+3*ldc, c3x);
-        if (m > 4) svst1_f64(npred, C+4*ldc, c4x);
-        if (m > 5) svst1_f64(npred, C+5*ldc, c5x);
-        if (m > 6) svst1_f64(npred, C+6*ldc, c6x);
-        if (m > 7) svst1_f64(npred, C+7*ldc, c7x);
-        if (m > 8) svst1_f64(npred, C+8*ldc, c8x);
-        if (m > 9) svst1_f64(npred, C+9*ldc, c9x);
-        if (m > 10) svst1_f64(npred, C+10*ldc, c10x);
-        if (m > 11) svst1_f64(npred, C+11*ldc, c11x);
-        if (m > 12) svst1_f64(npred, C+12*ldc, c12x);
-        if (m > 13) svst1_f64(npred, C+13*ldc, c13x);
-        if (m > 14) svst1_f64(npred, C+14*ldc, c14x);
-        if (m > 15) svst1_f64(npred, C+15*ldc, c15x);
     }
+    svst1_f64(npred, C, c0x);
+    if (m > 1) svst1_f64(npred, C+ldc, c1x);
+    if (m > 2) svst1_f64(npred, C+2*ldc, c2x);
+    if (m > 3) svst1_f64(npred, C+3*ldc, c3x);
+    if (m > 4) svst1_f64(npred, C+4*ldc, c4x);
+    if (m > 5) svst1_f64(npred, C+5*ldc, c5x);
+    if (m > 6) svst1_f64(npred, C+6*ldc, c6x);
+    if (m > 7) svst1_f64(npred, C+7*ldc, c7x);
+    if (m > 8) svst1_f64(npred, C+8*ldc, c8x);
+    if (m > 9) svst1_f64(npred, C+9*ldc, c9x);
+    if (m > 10) svst1_f64(npred, C+10*ldc, c10x);
+    if (m > 11) svst1_f64(npred, C+11*ldc, c11x);
+    if (m > 12) svst1_f64(npred, C+12*ldc, c12x);
+    if (m > 13) svst1_f64(npred, C+13*ldc, c13x);
+    if (m > 14) svst1_f64(npred, C+14*ldc, c14x);
+    if (m > 15) svst1_f64(npred, C+15*ldc, c15x);
 
 }
+
 
 // cse260
 // you can put your optimized kernels here
