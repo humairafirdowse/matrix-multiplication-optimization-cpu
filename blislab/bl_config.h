@@ -57,10 +57,10 @@ extern "C" {
 
 #if 1
  // #define DGEMM_KC 384
-#define DGEMM_KC 64
-#define DGEMM_MC 64
-#define DGEMM_NC 64
-#define DGEMM_MR 4
+#define DGEMM_KC 409
+#define DGEMM_MC 2048
+#define DGEMM_NC 320
+#define DGEMM_MR 16
 #define DGEMM_NR 4
 #endif
 
