@@ -131,4 +131,3 @@ benchmark-blislab : $(BLISLAB:.c=.o) benchmark.o $(UTIL)
 clean:
 	rm -f $(targets) $(objects) $(UTIL) core
 
-

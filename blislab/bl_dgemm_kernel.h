@@ -50,7 +50,7 @@
 #include "bl_config.h"
 
 #include <stdio.h>
-//#include <arm_sve.h>
+#include <arm_sve.h>
 
 
 // Allow C++ users to include this header file in their source code. However,
@@ -80,9 +80,6 @@ void bl_dgemm_ukr( int k,
         double *c,
         unsigned long long ldc,
         aux_t* data );
-
-
-
 
 static void (*bl_micro_kernel) (
         int    k,
