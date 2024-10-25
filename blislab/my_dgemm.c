@@ -44,7 +44,6 @@
  *      handle arbitrary  size C
  * */
 
-#include <stdio.h>
 
 #include "bl_dgemm_kernel.h"
 #include "bl_dgemm.h"
@@ -91,6 +90,16 @@ void packA_mcxkc_d(
         double *packA
         )
 {
+    for(int i=0;i<k;i++){
+      for(int j=0;j<m;j++){
+        packA[j+m*i]=XA[j*ldXA+i];
+        
+      }
+      
+    }
+
+    
+    
 }
 
 
@@ -136,6 +145,13 @@ void packB_kcxnc_d(
         double *packB
         )
 {
+    for(int i=0;i<k;i++){
+      for(int j=0;j<n;j++){
+        packB[i*n+j]=XB[i*ldXB+j];
+        //printf("packB: %lf\n",packB[i*k+j]);
+      }
+      
+    }
 }
 
 /*
@@ -163,12 +179,12 @@ void bl_macro_kernel(
 			      k,
 			      min(m-i, DGEMM_MR),
 			      min(n-j, DGEMM_NR),
-			      &packA[i * ldc],          // assumes sq matrix, otherwise use lda
-			      &packB[j],                // 
+			      // &packA[i * ldc],          // assumes sq matrix, otherwise use lda
+			      // &packB[j],                // 
 
-			      // what you should use after real packing routine implmemented
-			      //			      &packA[ i * k ],
-			      //			      &packB[ j * k ],
+			      //what you should use after real packing routine implmemented
+			      &packA[ i * k ],
+			      &packB[ j * k ],
 			      &C[ i * ldc + j ],
 			      (unsigned long long) ldc,
 			      &aux
@@ -196,7 +212,7 @@ void bl_dgemm(
   // 
   // FIXME undef NOPACK when you implement packing
   //
-#define NOPACK
+#undef NOPACK
 #ifndef NOPACK
   packA  = bl_malloc_aligned( DGEMM_KC, ( DGEMM_MC/DGEMM_MR + 1 )* DGEMM_MR, sizeof(double) );
   packB  = bl_malloc_aligned( DGEMM_KC, ( DGEMM_NC/DGEMM_NR + 1 )* DGEMM_NR, sizeof(double) );
@@ -204,7 +220,7 @@ void bl_dgemm(
   for ( ic = 0; ic < m; ic += DGEMM_MC ) {              // 5-th loop around micro-kernel
       ib = min( m - ic, DGEMM_MC );
       for ( pc = 0; pc < k; pc += DGEMM_KC ) {          // 4-th loop around micro-kernel
-	pb = min( k - pc, DGEMM_KC );
+	pb = min( k - pc, DGEMM_KC ); 
 	
 
 #ifdef NOPACK
@@ -259,4 +275,5 @@ void bl_dgemm(
 
 void square_dgemm(int lda, double *A, double *B, double *C){
   bl_dgemm(lda, lda, lda, A, lda, B, lda, C,  lda);
+  
 }
