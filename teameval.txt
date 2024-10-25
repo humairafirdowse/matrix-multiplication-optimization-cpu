@@ -1,4 +1,4 @@
-                    CSE 260, Parallel Computation
+CSE 260, Parallel Computation
                             (Fall 2024)
            Department of Computer Science and Engineering 	
                  University of California, San Diego 	
@@ -13,32 +13,45 @@ If you worked alone leave column B blank
 
 (1) List the names of your team members:
 
-A:
+A: Humaira Firdowse Mohammed
 
  
-B:
+B: Shiva Surya Seelam
 
  
  
 (2) Estimate how much time each team member devoted to this project, in HOURS.
 
   	                        A 	       B
-meetings 	  	  	 
-coding 	  	  	 
-writeup 	  	  	 
-planning (alone) 	  	  	 
-total (including meetings) 	  	  	 
+meetings 	  	  	16            16
+coding 	  	  	         8             5
+writeup 	                 3             2 	  	 
+planning (alone) 	         1             3   	  	 
+total (including meetings) 	28            26    	  	 
 
 
 (3) Discuss the following.
 (a) If you worked in a team, what were the major responsibilities
     of each team member?
+    Understanding the code and finalizing the architecture and implementation strategy - A and B.
+    PackA and packB -B
+    micro kernel -A
+    Parameter Optimisation -B
+    SVE and fringe cases -A
+    Report - A and B
 (b) Did you complete the assignment?
+    Yes
 (c) What were your major strengths and weaknesses in doing this
     assignment (individually or in a team)?
     If in a team, also discuss how your team worked together.
-(d) What  lessons did you learn from these events.
+    Architecture was B's major strength; coding was A's major strength. Critical thinking was divided, understood teammates 
+    ideas and built up on them.
+(d) What  lessons did you learn from these events?
+    Should manage time properly and plan things correctly
 (e) If in a team, whether and how you plan to change the way
     your work together .
+    try to spend more time working individually.
 (f) Anything else that comes to mind.
+    None
 (g) What suggestions do you have to improve this assignment?
+    Give more AWS credits.
